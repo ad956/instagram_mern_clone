@@ -18,7 +18,6 @@ app.use("/public", express.static("public"));
 //   require("dotenv").config();
 // }
 
-// import routes
 const post = require("./routes/postRoute");
 const user = require("./routes/userRoute");
 const chat = require("./routes/chatRoute");
@@ -29,7 +28,6 @@ app.use("/api/v1", user);
 app.use("/api/v1", chat);
 app.use("/api/v1", message);
 
-// deployment
 __dirname = path.resolve();
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/frontend/build")));
@@ -43,7 +41,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// error middleware
 app.use(errorMiddleware);
 
 module.exports = app;

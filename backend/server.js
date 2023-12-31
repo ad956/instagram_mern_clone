@@ -15,8 +15,6 @@ const server = app.listen(PORT, () => {
   console.log(`Server Running on http://localhost:${PORT}`);
 });
 
-// ============= socket.io ==============
-
 const io = require("socket.io")(server, {
   // pingTimeout: 60000,
   cors: {
@@ -41,7 +39,6 @@ const getUser = (userId) => {
 
 io.on("connection", (socket) => {
   console.log("🚀 Someone connected!");
-  // console.log(users);
 
   // get userId and socketId from client
   socket.on("addUser", (userId) => {
@@ -73,7 +70,7 @@ io.on("connection", (socket) => {
 
   // user disconnected
   socket.on("disconnect", () => {
-    console.log("⚠️ Someone disconnected");
+    console.log("user disconnected");
     removeUser(socket.id);
     io.emit("getUsers", users);
     // console.log(users);
